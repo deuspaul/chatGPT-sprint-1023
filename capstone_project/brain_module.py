@@ -18,8 +18,18 @@ class ChatGPT:
         openai.api_key = self.api_key
 
         # A constant to describe the role or behavior of the chatbot
-        self.MAIN_ROLE = "This is the behavior of chatGPT"
+        self.MAIN_ROLE = "This tool is useful to convert audio messages in spanish to text (specially those from whatsapp)"
 
+    def request_transcription(self, audio_file):
+        transcript = openai.audio.transcriptions.create(
+            model="whisper-1",
+            file=audio_file,
+            language="es",
+            response_format="json"
+        )
+
+        return transcript.text
+    
     def request_openai(self, message, role="system"):
         """
         Make a request to the OpenAI API.
@@ -33,13 +43,20 @@ class ChatGPT:
         """
 
         # Create a chat completion with the provided message and role
-        response = openai.ChatCompletion.create(
+        response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": role, "content": message}]
         )
 
         # Return the message content from the API response
-        return response["choices"][0]["message"]["content"]
+        #return response["choices"][0]["message"]["content"]
+        print(response.id)
+        print(response.created)
+        print(response.model)
+        print(response.usage)
+        return response.choices[0].message.content
+
+
 
 # If you need to test or use this directly, you can do:
 # if __name__ == "__main__":
