@@ -8,7 +8,7 @@ if  __name__ == "__main__":
 
   try:
     #The downloaded audio message from whatsapp
-    audio_files = open("./audio_messages/WhatsApp Ptt 2023-12-08 at 10.12.57.ogg", "rb")
+    audio_files = open("./audio_messages/WhatsApp Audio 2023-12-09 at 16.43.30.ogg", "rb")
     response = bot.request_transcription(audio_files)
     print("\nEl texto del mensaje de audio es:\n\n"+response)
 

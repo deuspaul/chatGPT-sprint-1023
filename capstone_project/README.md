@@ -1,7 +1,9 @@
+#TLDL: Too Long Didnt Listen!
+
 
 # Table of Contents
 
-1.  [ChatGPT-Sprint Capstone Project](#org544b433)
+1.  [TLDL](#org544b433)
     1.  [Getting Started](#orgcbe7844)
     2.  [Utilizing the GPT Module](#org9c4e782)
     3.  [The Challenge](#org6f6550d)
@@ -11,43 +13,53 @@
 
 <a id="org544b433"></a>
 
-# ChatGPT-Sprint Capstone Project
+# TLDL: Too long didnt listen
 
-Welcome to the &ldquo;ChatGPT-Sprint&rdquo; capstone project located within the \`capstone<sub>project</sub>\` directory. This sprint guides you through understanding and effectively integrating the ChatGPT API into your development endeavors. By its conclusion, you&rsquo;ll have crafted a unique tool that harnesses the ChatGPT API, utilizing the module we&rsquo;ve provided as a foundation.
+The whatsapp audio message transcriber
+
+Me automatically whenever I receive a whastapp audio message with a monumental length:
+“Look, I aint listening to all that. I am happy for you though or sorry that it happened…”
+
+Some audio messages are just too long for my liking a.k.a. attention span. If they want to talk, why not just call?. 
+
+Some audio messages have also contained important steps/instructions and having to listen to the message many times until I document all the notes is annoying, which is something a text message would be much better for...
 
 
 <a id="orgcbe7844"></a>
 
-## Getting Started
+## What is this tool?
 
-Before plunging into the project:
-
--   Equip yourself with a basic understanding of Python (or another ChatGPT API-supported language).
--   Set up your development environment (e.g., Python environment, code editor).
--   Procure an OpenAI API key from [OpenAI&rsquo;s platform](https://www.openai.com/).
--   IMPORTANT: Place your API key within a `.env` file as `API_KEY=your_actual_key_here`. This ensures your credentials remain private and are not unintentionally shared.
+A tool that will transcribe, summarize and provide bullet points from downloaded whatsapp audio messages
 
 
 <a id="org9c4e782"></a>
 
-## Utilizing the GPT Module
+## Requirements:
 
-Within this project, you&rsquo;ll find a pre-configured module designed to simplify interactions with the ChatGPT API. Make sure to leverage this module for streamlined development and a better understanding of best practices when dealing with the ChatGPT API.
+- Python 3.10 or higher
+- OpenAI API key
 
 
 <a id="org6f6550d"></a>
 
-## The Challenge
+## How to set up:
 
-Your objective is to design an application or tool optimizing the ChatGPT API. While the details of this project rest in your hands, keep in mind the prime directive: innovation complemented by seamless integration.
+1. Clone the repository:
+
+```git clone https://github.com/deuspaul/chatGPT-sprint-1023.git```
+
+2. Install the required packages:
+
+```pip install -r requirements.txt```
+
+3. Create the .env file in the 'capstone_project folder', and add your OpenAI API Key:
+
+```OPENAI_API_KEY="<Replace with your API key>"```
 
 
 <a id="orgf8323f5"></a>
 
-## Resources
+## How to use:
 
-Aid your development journey with:
-
--   [ChatGPT Official Documentation](https://beta.openai.com/docs/)
--   [OpenAI&rsquo;s API pricing and rate limits](https://openai.com/pricing)
-
+Download your WhatsApp audio message to the 'audio_messages' folder and run the 'main.py' file with python.
+The processed audio messages will be moved to the 'audio_messages/processed' folder.
