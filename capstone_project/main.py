@@ -2,17 +2,26 @@
 
 from brain_module import ChatGPT
 import shutil
+import os
 
 if  __name__ == "__main__": 
   bot = ChatGPT()
 
   try:
     #The downloaded audio message from whatsapp
-    audio_files = open("./audio_messages/WhatsApp Audio 2023-12-09 at 16.43.30.ogg", "rb")
+    folder_path = "./audio_messages"
+    for filename in os.listdir(folder_path):
+      if filename.endswith((".flac", ".ogg", ".mp4", ".mpeg", ".mp3", ".m4a")):
+        file_path = os.path.join(folder_path, filename)
+    audio_files = open(file_path, "rb")
+
+    #Transcribing the audio message with the OpenAI audio endoint API
     response = bot.request_transcription(audio_files)
     print("\nEl texto del mensaje de audio es:\n\n"+response)
 
     audio_files.close()
+
+    #Moving the file to the 'processed_audio_messages' folder
     shutil.move(audio_files.name, "./audio_messages/processed_audio_messages/")
 
     #Additional options to work with the audio file
