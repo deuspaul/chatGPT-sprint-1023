@@ -4,10 +4,10 @@
 # Table of Contents
 
 1.  [TLDL](#org544b433)
-    1.  [Getting Started](#orgcbe7844)
-    2.  [Utilizing the GPT Module](#org9c4e782)
-    3.  [The Challenge](#org6f6550d)
-    4.  [Resources](#orgf8323f5)
+    1.  [What is this tool?](#orgcbe7844)
+    2.  [Requirements](#org9c4e782)
+    3.  [How to set up](#org6f6550d)
+    4.  [How to use](#orgf8323f5)
 
 
 
