@@ -21,6 +21,16 @@ class ChatGPT:
         self.MAIN_ROLE = "This tool is useful to convert audio messages in spanish to text (specially those from whatsapp)"
 
     def request_transcription(self, audio_file):
+        """
+        Make a request to the OpenAI Audio endpoint API
+
+        Args:
+        - file (file): The audio file object (not file name) to transcribe, in one of these formats: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm.
+        - language (str, optional): The language of the input audio. Supplying the input language in ISO-639-1 format will improve accuracy and latency.
+
+        Returns:
+        - str: The transcribed text.
+        """
         transcript = openai.audio.transcriptions.create(
             model="whisper-1",
             file=audio_file,
@@ -45,20 +55,8 @@ class ChatGPT:
         # Create a chat completion with the provided message and role
         response = openai.chat.completions.create(
             model="gpt-3.5-turbo",
-            messages=[{"role": role, "content": message}]
+            messages=[{"role": role, "content": message}],
+            temperature=0,
         )
 
-        # Return the message content from the API response
-        #return response["choices"][0]["message"]["content"]
-        print(response.id)
-        print(response.created)
-        print(response.model)
-        print(response.usage)
         return response.choices[0].message.content
-
-
-
-# If you need to test or use this directly, you can do:
-# if __name__ == "__main__":
-#     chat_gpt = ChatGPT()
-#     print(chat_gpt.request_openai("Hello!"))

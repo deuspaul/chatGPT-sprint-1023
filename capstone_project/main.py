@@ -1,35 +1,52 @@
 #!/usr/bin/env python3
 
 from brain_module import ChatGPT
-
-# Doing the following makes python open the folder as a file. Need to investigate way to iterate over several files
-# audio_files = open("./audio_messages/", "rb")
-audio_files = open("./audio_messages/WhatsApp Ptt 2023-12-08 at 10.12.57.ogg", "rb")
+import shutil
 
 if  __name__ == "__main__": 
   bot = ChatGPT()
 
-
-  
-  
   try:
-    #a part where it validates if there was as successful response if not, an error message stating why. Maybe here using a try
+    #The downloaded audio message from whatsapp
+    audio_files = open("./audio_messages/WhatsApp Ptt 2023-12-08 at 10.12.57.ogg", "rb")
     response = bot.request_transcription(audio_files)
-    print(response)
+    print("\nEl texto del mensaje de audio es:\n\n"+response)
 
-  #move the file to the 'processed' folder
+    audio_files.close()
+    shutil.move(audio_files.name, "./audio_messages/processed_audio_messages/")
 
-  #ask if you would like to further process the message, 1)summarize or 2)create bullet points
+    #Additional options to work with the audio file
+    options = ['resumir', 'crear una lista con los puntos importantes', 'exit']
+    user_input = ''
+    input_message = "\nMas opciones:\n"
+    
+    for index, item in enumerate(options):
+      input_message += f'{index+1}) {item}\n'
+      
+    input_message += 'Tu seleccion: '
+    
+    while user_input != '3':
+      user_input = input(input_message)
 
-  #Im bored, how about we create an image from this text message and see what happens, send it with a random numer for temperature
+      match user_input:
+        case '1':
+          resumen = "puedes hacer un resumen del sigiente mensaje en un renglon?: "+response
+          respuesta_resumen = bot.request_openai(resumen)
+          print("\nEl resumen del mensaje es:\n"+respuesta_resumen)
 
+        case '2':
+          lista = "puedes hacer una lista con los 3 puntos mas importantes del siguiente mensaje?: "+response
+          respuesta_lista = bot.request_openai(lista)
+          print("\nAqui va la lista de puntos importantes:\n"+respuesta_lista)
 
+    print("Gracias, vuelve pronto!")
+ 
   except:
-    print("Please make sure the file path is correct and that it is in one of the following formats:  flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm")
+    print("Por favor asegurate de que el archivo de audio se encuentra en la carpeta 'audio_messages' y que el formato del archivo sea alguno de los siguientes: flac, mp3, mp4, mpeg, mpga, m4a, ogg, wav, or webm")
   
 
 
-  #failed try checks: 1) if there is no audio file or its not compatible, 2)Cannot connect to openAI, check your API key
+
 
   
  
